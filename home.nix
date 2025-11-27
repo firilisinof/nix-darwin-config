@@ -1,4 +1,9 @@
 { config, pkgs, lib, ... }:
+let
+  tex = (pkgs.texlive.combine {
+    inherit (pkgs.texlive) scheme-full;
+  });
+in
 {
   home.username = "lucas";
   home.homeDirectory = lib.mkForce "/Users/lucas";
@@ -7,6 +12,7 @@
     duti
     age
     nodejs_24
+    tex
   ];
 
   programs.neovim = {

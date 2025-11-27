@@ -4,6 +4,10 @@
 
   homebrew = {
     enable = true;
+    onActivation = {
+      autoUpdate = true;
+      upgrade = true;
+    };
     casks = [
       "google-chrome"
       "discord"
