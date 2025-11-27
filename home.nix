@@ -4,7 +4,9 @@
   home.homeDirectory = lib.mkForce "/Users/lucas";
 
   home.packages = with pkgs; [
+    duti
     age
+    nodejs_24
   ];
 
   programs.neovim = {
@@ -22,11 +24,16 @@
       vim.opt.shiftwidth = 2
       vim.opt.expandtab = true
       vim.opt.autoindent = true
+
+      vim.schedule(function()
+        vim.o.clipboard = 'unnamedplus'
+      end)
     '';
   };
 
   home.file.".config/ghostty/config".text = ''
     theme = GitHub Light Default
+    keybind = super+f=write_scrollback_file:open
   '';
 
   programs.zsh = {
@@ -56,12 +63,15 @@
 
     sessionVariables = {
       EDITOR = "nvim";
-      VISUAL = "nvim";
+      VISUAL = "code --wait --new-window";
     };
 
     initContent = lib.mkBefore ''
       export PATH=$HOME/.local/bin:$PATH
       export HISTIGNORE="pwd:ls:cd"
+
+      autoload -Uz select-word-style
+      select-word-style bash
     '';
 
     shellAliases = {

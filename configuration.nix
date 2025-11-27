@@ -14,6 +14,7 @@
       "claude-code"
       "adobe-creative-cloud"
       "ghostty"
+      "zotero"
     ];
   };
 
